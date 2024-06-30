@@ -1,0 +1,29 @@
+.product-card .cart-top::after{
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: rgba(225, 225, 225, .6);
+    z-index: 1;
+    opacity: 0;
+    transition: 2s all;
+}
+
+.product-card .product-card-buttons{
+    opacity: 0;
+    z-index: 2;
+    transition: 2s all;
+}
+.product-card:hover .product-card-buttons{
+    opacity: 1;
+}
+
+.product-card:hover .cart-top::after{
+    opacity: 1;
+}
+
+.product-card h5{
+    z-index: 5;
+}
