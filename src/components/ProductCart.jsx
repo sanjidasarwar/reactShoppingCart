@@ -10,16 +10,30 @@ function ProductCart({item}) {
   const {title, category,
     image, price,rating
   } =item
-  let {setCartNumber, setCartItem, cartItem} =useContext(CartContext)
+  let {setCartNumber, setCartItem} =useContext(CartContext)
 
-  const addCart=(item)=>{
-    console.log(item);
+  const addCart=(addedItem)=>{
     setCartNumber(prevCartNumber => prevCartNumber + 1);
-    setCartItem([
-      ...cartItem,
-      item
 
-    ])
+
+    setCartItem(prevItems => {
+      const existingItem = prevItems.find(prevItem => prevItem.id===addedItem.id)
+      if(existingItem){
+       return prevItems.map(prevItem => 
+          prevItem.id===addedItem.id ? {...prevItem, quantity: prevItem.quantity+1} : prevItem
+        )
+    
+      }else{
+        return [
+          ...prevItems,
+          {
+            ...item,
+            quantity:1
+          }
+        ]
+      }
+      
+    })
   }
   return (
     <Card className='product-card'>

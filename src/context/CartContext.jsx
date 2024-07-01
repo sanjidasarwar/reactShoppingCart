@@ -13,6 +13,8 @@ export const CartProvider =({children})=>{
         setCartItem
       };
       
+
+    console.log(cartItem);
     return(
         <CartContext.Provider value={value}>
             {children}
