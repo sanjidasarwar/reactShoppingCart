@@ -4,11 +4,18 @@ import Badge from "react-bootstrap/Badge";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar as fasStar, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { faStar as farStar, faEye } from '@fortawesome/free-regular-svg-icons';
+import { CartContext } from "../context/CartContext";
+import { useContext } from "react";
 
 function ProductCart({item}) {
   const {title, category,
     image, price,rating
   } =item
+  let {cartNumber, setCartNumber} =useContext(CartContext)
+
+  const addCart=()=>{
+    setCartNumber(prevCartNumber => prevCartNumber + 1);
+  }
   return (
     <Card className='product-card'>
       <div className="cart-top position-relative">
@@ -17,7 +24,7 @@ function ProductCart({item}) {
         <Button variant="outline-info" className="me-2">
              <FontAwesomeIcon icon={faEye} />
         </Button>
-        <Button variant="outline-info">
+        <Button variant="outline-info" onClick={addCart}>
             <FontAwesomeIcon icon={faCartShopping} />
         </Button>
         </div>

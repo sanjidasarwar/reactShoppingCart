@@ -7,7 +7,7 @@ import Header from '../components/Header';
 
 function ProdeuctList() {
   const { data } = useFetchData("https://fakestoreapi.com/products");
-  console.log(data);
+
   return (
     <>
     <Header />
