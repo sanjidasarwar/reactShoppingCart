@@ -3,11 +3,14 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import ProductCart from "../components/ProductCart";
 import useFetchData from "../hooks/useFetchData";
+import Header from '../components/Header';
 
 function ProdeuctList() {
   const { data } = useFetchData("https://fakestoreapi.com/products");
   console.log(data);
   return (
+    <>
+    <Header />
     <Container>
         <Row>
             {
@@ -19,6 +22,8 @@ function ProdeuctList() {
             }
         </Row>
     </Container>
+    </>
+   
   );
 }
 
