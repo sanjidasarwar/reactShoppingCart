@@ -27,3 +27,7 @@
 .product-card h5{
     z-index: 5;
 }
+
+.card-img{
+    height: 300px;
+}
