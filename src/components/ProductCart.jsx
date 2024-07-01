@@ -1,6 +1,5 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import Badge from "react-bootstrap/Badge";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar as fasStar, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import { faStar as farStar, faEye } from '@fortawesome/free-regular-svg-icons';
@@ -11,10 +10,16 @@ function ProductCart({item}) {
   const {title, category,
     image, price,rating
   } =item
-  let {cartNumber, setCartNumber} =useContext(CartContext)
+  let {setCartNumber, setCartItem, cartItem} =useContext(CartContext)
 
-  const addCart=()=>{
+  const addCart=(item)=>{
+    console.log(item);
     setCartNumber(prevCartNumber => prevCartNumber + 1);
+    setCartItem([
+      ...cartItem,
+      item
+
+    ])
   }
   return (
     <Card className='product-card'>
@@ -24,7 +29,7 @@ function ProductCart({item}) {
         <Button variant="outline-info" className="me-2">
              <FontAwesomeIcon icon={faEye} />
         </Button>
-        <Button variant="outline-info" onClick={addCart}>
+        <Button variant="outline-info" onClick={()=>{addCart(item)}}>
             <FontAwesomeIcon icon={faCartShopping} />
         </Button>
         </div>
