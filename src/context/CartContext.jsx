@@ -36,10 +36,25 @@ export const CartProvider =({children})=>{
       });
     }
 
+    const deleteItem = (id)=>{
+        const updatedCartList = state.cartList.filter(cart => cart.id !==id)
+        const deletedCart = state.cartList.find(cart => cart.id === id)
+        console.log(deletedCart);
+        dispatch({
+            type:"REMOVE_FROM_CART",
+            payload:{
+                products:updatedCartList,
+                updatedCartNumber:state.cartNumber - deletedCart.quantity
+            }
+        })
+       
+      }
+
     const value = {
         cartList:state.cartList,
         cartNumber: state.cartNumber,
         addCart,
+        deleteItem,
       };
   
     console.log(state.cartList);

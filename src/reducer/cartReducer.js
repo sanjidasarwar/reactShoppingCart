@@ -8,8 +8,14 @@ export const cartReducer = (state, action) => {
         cartList: payload.products,
         cartNumber: state.cartNumber + 1,
       };
+
     case "REMOVE_FROM_CART":
-      return;
+      return{
+        ...state,
+        cartList:payload.products,
+        cartNumber:payload.updatedCartNumber
+      };
+
     case "UPDATE_QUANTITY":
       return;
     case "UPDATE_TOTAL":

@@ -9,15 +9,16 @@ import { useContext, useState } from "react";
 function ShopingCartCard({ item }) {
   const { id, image, title, productTotal, category, quantity } = item;
 
-  let {setCartItem} =useContext(CartContext)
+  let {setCartItem, deleteItem} =useContext(CartContext)
 
 //   const [errors, setErrors] =useState({})
 // console.log(errors);
-  const handleDeleteItem = (id)=>{
-    setCartItem(prevItems => {
-      return prevItems.filter(prevItem => prevItem.id !== id)
-    })
-  }
+
+  // const handleDeleteItem = (id)=>{
+  //   setCartItem(prevItems => {
+  //     return prevItems.filter(prevItem => prevItem.id !== id)
+  //   })
+  // }
 
   const handleInputChange=(e, id)=>{
     const inputValue=e.target.value==='' ? 0 : parseInt(e.target.value)
@@ -95,7 +96,7 @@ const handleDecrement=(id)=>{
               </Card.Title>
             </div>
             <a href="#!" className="mb-3">
-              <FontAwesomeIcon icon={faTrashAlt} onClick={()=>handleDeleteItem(id)}/>
+              <FontAwesomeIcon icon={faTrashAlt} onClick={()=>deleteItem(id)}/>
             </a>
           </div>
         </div>
