@@ -1,20 +1,33 @@
-import {createContext, useState} from 'react';
+import {createContext, useReducer} from 'react';
+import { cartReducer } from "../reducer/cartReducer";
+
+const initialState = {
+  cartList: [],
+  cartNumber: 0,
+  total: 0,
+};
+
 
 export const CartContext =createContext(null)
 
 
 export const CartProvider =({children})=>{
-    let [cartNumber, setCartNumber] =useState(0)
-    let [cartItem, setCartItem] =useState([])
+    const [state, dispatch] = useReducer(cartReducer, initialState);
+
+    const addCart = () => {
+      dispatch({
+        type: "ADD_TO_CART"
+      });
+    }
+
     const value = {
-        cartNumber,
-        setCartNumber,
-        cartItem,
-        setCartItem
+        cartNumber: state.cartNumber,
+        addCart,
       };
+  
+    console.log(state.cartNumber);
       
 
-    console.log(cartItem);
     return(
         <CartContext.Provider value={value}>
             {children}

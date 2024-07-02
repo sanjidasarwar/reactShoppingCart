@@ -10,31 +10,31 @@ function ProductCart({item}) {
   const {title, category,
     image, price,rating
   } =item
-  let {setCartNumber, setCartItem} =useContext(CartContext)
+  let {addCart} =useContext(CartContext)
 
-  const addCart=(addedItem)=>{
-    setCartNumber(prevCartNumber => prevCartNumber + 1);
+  // const addCart=(addedItem)=>{
+  //   setCartNumber(prevCartNumber => prevCartNumber + 1);
 
 
-    setCartItem(prevItems => {
-      const existingItem = prevItems.find(prevItem => prevItem.id===addedItem.id)
-      if(existingItem){
-       return prevItems.map(prevItem => 
-          prevItem.id===addedItem.id ? {...prevItem, quantity: prevItem.quantity+1} : prevItem
-        )
+  //   setCartItem(prevItems => {
+  //     const existingItem = prevItems.find(prevItem => prevItem.id===addedItem.id)
+  //     if(existingItem){
+  //      return prevItems.map(prevItem => 
+  //         prevItem.id===addedItem.id ? {...prevItem, quantity: prevItem.quantity+1} : prevItem
+  //       )
     
-      }else{
-        return [
-          ...prevItems,
-          {
-            ...item,
-            quantity:1
-          }
-        ]
-      }
+  //     }else{
+  //       return [
+  //         ...prevItems,
+  //         {
+  //           ...item,
+  //           quantity:1
+  //         }
+  //       ]
+  //     }
       
-    })
-  }
+  //   })
+  // }
   return (
     <Card className='product-card'>
       <div className="cart-top position-relative">

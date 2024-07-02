@@ -4,18 +4,61 @@ import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import InputGroup from 'react-bootstrap/InputGroup';
 import { CartContext } from "../../context/CartContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 function ShopingCartCard({ item }) {
   const { id, image, title, price, category, quantity } = item;
 
   let {setCartItem} =useContext(CartContext)
 
+//   const [errors, setErrors] =useState({})
+// console.log(errors);
   const handleDeleteItem = (id)=>{
     setCartItem(prevItems => {
       return prevItems.filter(prevItem => prevItem.id !== id)
     })
   }
+
+  const handleInputChange=(e, id)=>{
+    const inputValue=e.target.value==='' ? 0 : parseInt(e.target.value)
+    setCartItem(prevItems =>{
+      return prevItems.map(prevItem =>
+        prevItem.id===id ? {...prevItem, quantity:inputValue} : prevItem
+      )
+    })
+
+    // if (inputValue === '' || parseInt(inputValue) === 0) {
+    //   setErrors(prevErrors => ({
+    //     ...prevErrors,
+    //     [id]: 'Enter a valid input'
+    //   }));
+    // } else {
+    //   setErrors(prevErrors => {
+    //     const newErrors = { ...prevErrors };
+    //     console.log("new error"+newErrors[id]);
+    //     delete newErrors[id];
+    //     return newErrors;
+    //   });
+    // }
+  }
+
+
+const handleIncrement=(id)=>{
+  setCartItem(prevItems =>{
+    return prevItems.map(prevItem =>
+      prevItem.id===id ? {...prevItem, quantity:prevItem.quantity+1} : prevItem
+    )
+  })
+}
+
+const handleDecrement=(id)=>{
+  setCartItem(prevItems =>{
+    return prevItems.map(prevItem =>
+      prevItem.id===id && prevItem.quantity > 1 ? {...prevItem, quantity:prevItem.quantity-1} : prevItem
+    )
+  })
+}
+
   return (
     <Card className="mb-3">
       <Card.Body>
@@ -37,12 +80,14 @@ function ShopingCartCard({ item }) {
           <div className="d-flex flex-row align-items-center" style={{width:"35%"}}>
             <div style={{width:"120px"}}>
               <InputGroup className="mb-3">
-                <InputGroup.Text id="basic-addon1">-</InputGroup.Text>
+                <InputGroup.Text onClick={()=>handleDecrement(id)} >-</InputGroup.Text>
                 <Form.Control
                   value={quantity}
+                  onChange={(e)=>handleInputChange(e, id)}
                 />
-                <InputGroup.Text id="basic-addon1">+</InputGroup.Text>
+                <InputGroup.Text onClick={()=>handleIncrement(id)}>+</InputGroup.Text>
               </InputGroup>
+              {/* {errors[item.id] && <p style={{ color: 'red' }}>{errors[item.id]}</p>} */}
             </div>
             <div style={{ width: "80px" }}>
               <Card.Title tag="h5" className="mb-3 ms-2">
