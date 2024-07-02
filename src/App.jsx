@@ -9,7 +9,7 @@ function App() {
   return (
     <CartProvider>
       <ProdeuctList />
-      {/* <ShoppingCart /> */}
+      <ShoppingCart />
     </CartProvider>
   )
 }

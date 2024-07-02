@@ -12,29 +12,6 @@ function ProductCart({item}) {
   } =item
   let {addCart} =useContext(CartContext)
 
-  // const addCart=(addedItem)=>{
-  //   setCartNumber(prevCartNumber => prevCartNumber + 1);
-
-
-  //   setCartItem(prevItems => {
-  //     const existingItem = prevItems.find(prevItem => prevItem.id===addedItem.id)
-  //     if(existingItem){
-  //      return prevItems.map(prevItem => 
-  //         prevItem.id===addedItem.id ? {...prevItem, quantity: prevItem.quantity+1} : prevItem
-  //       )
-    
-  //     }else{
-  //       return [
-  //         ...prevItems,
-  //         {
-  //           ...item,
-  //           quantity:1
-  //         }
-  //       ]
-  //     }
-      
-  //   })
-  // }
   return (
     <Card className='product-card'>
       <div className="cart-top position-relative">

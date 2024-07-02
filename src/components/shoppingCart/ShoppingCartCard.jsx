@@ -7,7 +7,7 @@ import { CartContext } from "../../context/CartContext";
 import { useContext, useState } from "react";
 
 function ShopingCartCard({ item }) {
-  const { id, image, title, price, category, quantity } = item;
+  const { id, image, title, productTotal, category, quantity } = item;
 
   let {setCartItem} =useContext(CartContext)
 
@@ -91,7 +91,7 @@ const handleDecrement=(id)=>{
             </div>
             <div style={{ width: "80px" }}>
               <Card.Title tag="h5" className="mb-3 ms-2">
-                {price}
+                {productTotal}
               </Card.Title>
             </div>
             <a href="#!" className="mb-3">

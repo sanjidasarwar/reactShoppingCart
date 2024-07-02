@@ -11,7 +11,7 @@ import { CartContext } from "../context/CartContext";
 
 
 function ShoppingCart() {
-    const {cartItem} =useContext(CartContext)
+    const {cartList} =useContext(CartContext)
   return (
     <section className="h-100 h-custom" style={{ backgroundColor: "#eee" }}>
       <Container className="py-5 h-100">
@@ -49,7 +49,7 @@ function ShoppingCart() {
                       </div>
                     </div>
                     {
-                        cartItem?.map(item=>(
+                        cartList?.map(item=>(
                             <ShopingCartCard key={item.id} item={item} />
                         ))
                     }
