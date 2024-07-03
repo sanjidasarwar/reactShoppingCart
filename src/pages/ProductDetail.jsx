@@ -5,13 +5,16 @@ import { Link, useParams } from 'react-router-dom';
 import useFetchData from "../hooks/useFetchData";
 import { useContext } from 'react';
 import { CartContext } from '../context/CartContext';
+import Loader from '../components/Loader';
 
 const ProductDetail = () => {
   const { productId } = useParams();
-  const { data } = useFetchData(`https://fakestoreapi.com/products/${productId}`);
+  const { data, loading } = useFetchData(`https://fakestoreapi.com/products/${productId}`);
   const { addCart, cartNumber } = useContext(CartContext); 
 
   return (
+    <>
+    {loading && <Loader />}
     <Container className="mt-5 mb-5">
       <Row className="d-flex justify-content-center">
         <Col md={10}>
@@ -68,6 +71,7 @@ const ProductDetail = () => {
         </Col>
       </Row>
     </Container>
+    </>
   );
 };
 
