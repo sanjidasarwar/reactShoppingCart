@@ -10,7 +10,6 @@ function ProdeuctList() {
 
   return (
     <>
-    <Header />
     <Container>
         <Row>
             {

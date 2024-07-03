@@ -10,6 +10,7 @@ import{faCcMastercard, faCcVisa, faCcAmex, faCcPaypal } from "@fortawesome/free-
 import ShopingCartCard from "../components/shoppingCart/ShoppingCartCard";
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
+import { Link } from "react-router-dom";
 
 
 function ShoppingCart() {
@@ -25,10 +26,12 @@ function ShoppingCart() {
                   <Col lg="7">
                     <Card.Title tag="h5">
                       <a href="#!" className="text-body">
+                        <Link to="/">
                         <FontAwesomeIcon
                           icon={faLongArrowAltLeft}
                           className="me-2"
-                        />{" "}
+                        />
+                        </Link>
                         Continue shopping
                       </a>
                     </Card.Title>

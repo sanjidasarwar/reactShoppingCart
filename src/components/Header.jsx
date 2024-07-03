@@ -3,6 +3,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { CartContext } from "../context/CartContext";
 import { useContext } from "react";
+import { Link, NavLink } from "react-router-dom";
 
 function Header() {
   const {cartNumber} =useContext(CartContext)
@@ -10,16 +11,18 @@ function Header() {
   return (
     <Navbar expand="md" className="bg-body-dark mb-3">
       <Container>
-        <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+        <Navbar.Brand>
+          <Link to="/">Shop</Link>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <Nav.Link className="fw-bold" href="#home">
-              Home
-            </Nav.Link>
-            <Nav.Link className="fw-bold" href="#link">
+            <NavLink className="fw-bold" to="/">
+                  Home
+            </NavLink>
+            <NavLink className="fw-bold" to="cart">
               Cart({cartNumber})
-            </Nav.Link>
+            </NavLink>
           </Nav>
         </Navbar.Collapse>
       </Container>
