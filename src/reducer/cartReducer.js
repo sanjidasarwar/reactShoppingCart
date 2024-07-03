@@ -27,10 +27,5 @@ export const cartReducer = (state, action) => {
         subtotal:payload.total,
         total:state.subtotal- SHIPPING_COST
       };
-
-    case "SET_ERROR":
-      return;
-    case "CLEAR_ERROR":
-      return;
   }
 };
