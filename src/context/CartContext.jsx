@@ -69,7 +69,8 @@ export const CartProvider = ({ children }) => {
 
     const updateSubtotalValue =calculateSubtotalValue(updatedCartList)
 
-
+    console.log(updateSubtotalValue)
+    
     dispatch({
       type: "ADD_TO_CART",
       payload: {

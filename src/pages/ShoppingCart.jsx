@@ -180,9 +180,9 @@ function ShoppingCart() {
                           size="lg"
                           className="checkout-button d-flex justify-content-between w-100"
                         >
-                          <span>${total}</span>
+                          <span>${total.toFixed(2)}</span>
                           <span>
-                            Checkout{" "}
+                            Checkout
                             <FontAwesomeIcon
                               icon={faLongArrowAltRight}
                               className="ms-2"

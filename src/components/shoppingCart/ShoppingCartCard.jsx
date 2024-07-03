@@ -47,7 +47,7 @@ function ShopingCartCard({ item }) {
                 {productTotal}
               </Card.Title>
             </div>
-            <a href="#!" className="mb-3">
+            <a href="#" className="mb-3 text-danger">
               <FontAwesomeIcon icon={faTrashAlt} onClick={()=>deleteItem(id)}/>
             </a>
           </div>

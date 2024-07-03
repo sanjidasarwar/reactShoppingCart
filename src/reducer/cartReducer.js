@@ -8,7 +8,7 @@ export const cartReducer = (state, action) => {
         ...state,
         cartList: payload.products,
         cartNumber: state.cartNumber + 1,
-        subtotal:payload.total,
+        subtotal:payload.subtotal,
         total:state.subtotal- SHIPPING_COST
       };
 
@@ -27,5 +27,8 @@ export const cartReducer = (state, action) => {
         subtotal:payload.total,
         total:state.subtotal- SHIPPING_COST
       };
+    
+    default:
+      throw new Error("No case found");
   }
 };
