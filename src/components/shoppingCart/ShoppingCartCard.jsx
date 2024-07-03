@@ -9,56 +9,8 @@ import { useContext, useState } from "react";
 function ShopingCartCard({ item }) {
   const { id, image, title, productTotal, category, quantity } = item;
 
-  let {setCartItem, deleteItem} =useContext(CartContext)
+  let {deleteItem, handleInputChange, handleIncrement, handleDecrement} =useContext(CartContext)
 
-//   const [errors, setErrors] =useState({})
-// console.log(errors);
-
-  // const handleDeleteItem = (id)=>{
-  //   setCartItem(prevItems => {
-  //     return prevItems.filter(prevItem => prevItem.id !== id)
-  //   })
-  // }
-
-  const handleInputChange=(e, id)=>{
-    const inputValue=e.target.value==='' ? 0 : parseInt(e.target.value)
-    setCartItem(prevItems =>{
-      return prevItems.map(prevItem =>
-        prevItem.id===id ? {...prevItem, quantity:inputValue} : prevItem
-      )
-    })
-
-    // if (inputValue === '' || parseInt(inputValue) === 0) {
-    //   setErrors(prevErrors => ({
-    //     ...prevErrors,
-    //     [id]: 'Enter a valid input'
-    //   }));
-    // } else {
-    //   setErrors(prevErrors => {
-    //     const newErrors = { ...prevErrors };
-    //     console.log("new error"+newErrors[id]);
-    //     delete newErrors[id];
-    //     return newErrors;
-    //   });
-    // }
-  }
-
-
-const handleIncrement=(id)=>{
-  setCartItem(prevItems =>{
-    return prevItems.map(prevItem =>
-      prevItem.id===id ? {...prevItem, quantity:prevItem.quantity+1} : prevItem
-    )
-  })
-}
-
-const handleDecrement=(id)=>{
-  setCartItem(prevItems =>{
-    return prevItems.map(prevItem =>
-      prevItem.id===id && prevItem.quantity > 1 ? {...prevItem, quantity:prevItem.quantity-1} : prevItem
-    )
-  })
-}
 
   return (
     <Card className="mb-3">

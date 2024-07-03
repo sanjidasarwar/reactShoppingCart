@@ -1,5 +1,6 @@
 export const cartReducer = (state, action) => {
   const { type, payload } = action;
+  const SHIPPING_COST = 20.00;
 
   switch (type) {
     case "ADD_TO_CART":
@@ -7,6 +8,8 @@ export const cartReducer = (state, action) => {
         ...state,
         cartList: payload.products,
         cartNumber: state.cartNumber + 1,
+        subtotal:payload.total,
+        total:state.subtotal- SHIPPING_COST
       };
 
     case "REMOVE_FROM_CART":
@@ -17,9 +20,14 @@ export const cartReducer = (state, action) => {
       };
 
     case "UPDATE_QUANTITY":
-      return;
-    case "UPDATE_TOTAL":
-      return;
+      return{
+        ...state,
+        cartList:payload.cartList,
+        cartNumber:payload.cartNumber,
+        subtotal:payload.total,
+        total:state.subtotal- SHIPPING_COST
+      };
+
     case "SET_ERROR":
       return;
     case "CLEAR_ERROR":

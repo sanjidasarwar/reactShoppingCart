@@ -2,16 +2,18 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
-import { Button } from "react-bootstrap";
+import Button  from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLongArrowAltLeft } from "@fortawesome/free-solid-svg-icons";
+import { faLongArrowAltLeft, faLongArrowAltRight} from "@fortawesome/free-solid-svg-icons";
+import{faCcMastercard, faCcVisa, faCcAmex, faCcPaypal } from "@fortawesome/free-brands-svg-icons"
 import ShopingCartCard from "../components/shoppingCart/ShoppingCartCard";
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 
 
 function ShoppingCart() {
-    const {cartList} =useContext(CartContext)
+    const {cartList, subtotal, total} =useContext(CartContext)
   return (
     <section className="h-100 h-custom" style={{ backgroundColor: "#eee" }}>
       <Container className="py-5 h-100">
@@ -38,15 +40,6 @@ function ShoppingCart() {
                         <p className="mb-1">Shopping cart</p>
                         <p className="mb-0">You have 4 items in your cart</p>
                       </div>
-                      <div>
-                        <p>
-                          <span className="text-muted">Sort by:</span>
-                          <a href="#!" className="text-body">
-                            price
-                            {/* <Icon fas icon="angle-down mt-1" /> */}
-                          </a>
-                        </p>
-                      </div>
                     </div>
                     {
                         cartList?.map(item=>(
@@ -56,82 +49,88 @@ function ShoppingCart() {
                   </Col>
 
                   <Col lg="5">
-                    <Card className="bg-primary text-white rounded-3">
-                      <Card.Body>
-                        <div className="d-flex justify-content-between align-items-center mb-4">
-                          {/* <Typography tag="h5" className="mb-0">
-                        Card details
-                      </Typography> */}
-                          <Card.Img
-                            src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
-                            className="rounded-3"
-                            style={{ width: "45px" }}
-                            alt="Avatar"
-                          />
-                        </div>
+      <Card className="bg-primary text-white rounded-3">
+        <Card.Body>
+          <div className="d-flex justify-content-between align-items-center mb-4">
+            <Card.Title className="mb-0">Card details</Card.Title>
+            <Card.Img
+              src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp"
+              className="rounded-3"
+              style={{ width: "45px" }}
+              alt="Avatar"
+            />
+          </div>
 
-                        <p className="small">Card type</p>
-                        <a href="#!" type="submit" className="text-white">
-                          {/* <Icon fab icon="cc-mastercard fa-2x me-2" /> */}
-                        </a>
-                        <a href="#!" type="submit" className="text-white">
-                          {/* <Icon fab icon="cc-visa fa-2x me-2" /> */}
-                        </a>
-                        <a href="#!" type="submit" className="text-white">
-                          {/* <Icon fab icon="cc-amex fa-2x me-2" /> */}
-                        </a>
-                        <a href="#!" type="submit" className="text-white">
-                          {/* <Icon fab icon="cc-paypal fa-2x me-2" /> */}
-                        </a>
+          <p className="small">Card type</p>
+          <div>
+            <a href="#!" className="text-white">
+              <FontAwesomeIcon icon={faCcMastercard} size="2x" className="me-2" />
+            </a>
+            <a href="#!" className="text-white">
+              <FontAwesomeIcon icon={faCcVisa} size="2x" className="me-2" />
+            </a>
+            <a href="#!" className="text-white">
+              <FontAwesomeIcon icon={faCcAmex} size="2x" className="me-2" />
+            </a>
+            <a href="#!" className="text-white">
+              <FontAwesomeIcon icon={faCcPaypal} size="2x" className="me-2" />
+            </a>
+          </div>
 
-                        <form className="mt-4">
-                          {/* <MDBInput className="mb-4" label="Cardholder's Name" type="text" size="lg"
-                        placeholder="Cardholder's Name" contrast /> */}
+          <Form className="mt-4">
+            <Form.Group className="mb-4">
+              <Form.Label>Cardholder's Name</Form.Label>
+              <Form.Control type="text" size="lg" placeholder="Cardholder's Name" />
+            </Form.Group>
 
-                          {/* <MDBInput className="mb-4" label="Card Number" type="text" size="lg"
-                        minLength="19" maxLength="19" placeholder="1234 5678 9012 3457" contrast /> */}
+            <Form.Group className="mb-4">
+              <Form.Label>Card Number</Form.Label>
+              <Form.Control type="text" size="lg" minLength="19" maxLength="19" placeholder="1234 5678 9012 3457" />
+            </Form.Group>
 
-                          <Row className="mb-4">
-                            <Col md="6">
-                              {/* <MDBInput className="mb-4" label="Expiration" type="text" size="lg"
-                            minLength="7" maxLength="7" placeholder="MM/YYYY" contrast /> */}
-                            </Col>
-                            <Col md="6">
-                              {/* <MDBInput className="mb-4" label="Cvv" type="text" size="lg" minLength="3"
-                            maxLength="3" placeholder="&#9679;&#9679;&#9679;" contrast /> */}
-                            </Col>
-                          </Row>
-                        </form>
+            <Row className="mb-4">
+              <Col md="6">
+                <Form.Group className="mb-4">
+                  <Form.Label>Expiration</Form.Label>
+                  <Form.Control type="text" size="lg" minLength="7" maxLength="7" placeholder="MM/YYYY" />
+                </Form.Group>
+              </Col>
+              <Col md="6">
+                <Form.Group className="mb-4">
+                  <Form.Label>CVV</Form.Label>
+                  <Form.Control type="text" size="lg" minLength="3" maxLength="3" placeholder="&#9679;&#9679;&#9679;" />
+                </Form.Group>
+              </Col>
+            </Row>
+          </Form>
 
-                        <hr />
+          <hr />
 
-                        <div className="d-flex justify-content-between">
-                          <p className="mb-2">Subtotal</p>
-                          <p className="mb-2">$4798.00</p>
-                        </div>
+          <div className="d-flex justify-content-between">
+            <p className="mb-2">Subtotal</p>
+            <p className="mb-2">${subtotal}</p>
+          </div>
 
-                        <div className="d-flex justify-content-between">
-                          <p className="mb-2">Shipping</p>
-                          <p className="mb-2">$20.00</p>
-                        </div>
+          <div className="d-flex justify-content-between">
+            <p className="mb-2">Shipping</p>
+            <p className="mb-2">$20.00</p>
+          </div>
 
-                        <div className="d-flex justify-content-between">
-                          <p className="mb-2">Total(Incl. taxes)</p>
-                          <p className="mb-2">$4818.00</p>
-                        </div>
+          <div className="d-flex justify-content-between">
+            <p className="mb-2">Total (Incl. taxes)</p>
+            <p className="mb-2">${total}</p>
+          </div>
 
-                        <Button color="info" size="lg">
-                          <div className="d-flex justify-content-between">
-                            <span>$4818.00</span>
-                            <span>
-                              Checkout{" "}
-                              <i className="fas fa-long-arrow-alt-right ms-2"></i>
-                            </span>
-                          </div>
-                        </Button>
-                      </Card.Body>
-                    </Card>
-                  </Col>
+          <Button variant="info" size="lg" className="d-flex justify-content-between w-100">
+            <span>$4818.00</span>
+            <span>
+              Checkout{" "}
+              <FontAwesomeIcon icon={faLongArrowAltRight} className="ms-2" />
+            </span>
+          </Button>
+        </Card.Body>
+      </Card>
+    </Col>
                 </Row>
               </Card.Body>
             </Card>
