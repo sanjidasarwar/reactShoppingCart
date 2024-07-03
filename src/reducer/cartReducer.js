@@ -9,7 +9,7 @@ export const cartReducer = (state, action) => {
         cartList: payload.products,
         cartNumber: state.cartNumber + 1,
         subtotal:payload.subtotal,
-        total:state.subtotal- SHIPPING_COST
+        total:payload.subtotal- SHIPPING_COST
       };
 
     case "REMOVE_FROM_CART":
@@ -25,7 +25,7 @@ export const cartReducer = (state, action) => {
         cartList:payload.cartList,
         cartNumber:payload.cartNumber,
         subtotal:payload.total,
-        total:state.subtotal- SHIPPING_COST
+        total:payload.subtotal- SHIPPING_COST
       };
     
     default:
