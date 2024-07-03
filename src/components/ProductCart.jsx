@@ -19,7 +19,7 @@ function ProductCart({ item }) {
       <div className="cart-top position-relative">
         <Card.Img variant="top" src={image} className="card-img" />
         <div className="product-card-buttons position-absolute top-0 left-0 w-100 h-100 d-flex justify-content-center align-items-center">
-          <Link to={`/${id}`}>
+          <Link to={`product/${id}`}>
             <Button variant="outline-info" className="me-2">
               <FontAwesomeIcon icon={faEye} />
             </Button>

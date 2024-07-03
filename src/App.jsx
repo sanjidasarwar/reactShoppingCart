@@ -6,16 +6,17 @@ import ProductDetail from "./pages/ProductDetail"
 import ShoppingCart from "./pages/ShoppingCart"
 import RootLayout from "./pages/RootLayout"
 import PageNotFound from "./pages/PageNotFound"
+import ProductListError from "./components/ProductListEroor"
 
 
 const router= createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<RootLayout />}>
+    <Route path="/" element={<RootLayout />} errorElement={<ProductListError />}>
         <Route index element={<ProdeuctList />} />
         <Route path="cart" element={<ShoppingCart />} />
-        <Route path=":productId" element={<ProductDetail />} />
+        <Route path="product/:productId" element={<ProductDetail />} />
 
-      <Route path="*" element={<PageNotFound />} />
+        <Route path="*" element={<PageNotFound />} />
 
     </Route>
   )
