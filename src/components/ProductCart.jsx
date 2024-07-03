@@ -11,21 +11,22 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 
 function ProductCart({ item }) {
-  const {id, title, category, image, price, rating } = item;
-  let { addCart } = useContext(CartContext);
+  const { id, title, category, image, price, rating } = item;
+  const { addCart } = useContext(CartContext);
 
   return (
-    <Card className="product-card">
+    <Card className="product-card h-100">
       <div className="cart-top position-relative">
         <Card.Img variant="top" src={image} className="card-img" />
         <div className="product-card-buttons position-absolute top-0 left-0 w-100 h-100 d-flex justify-content-center align-items-center">
           <Link to={`product/${id}`}>
-            <Button variant="outline-info" className="me-2">
+            <Button variant="outline-primary" className="me-2 custom-btn">
               <FontAwesomeIcon icon={faEye} />
             </Button>
           </Link>
           <Button
-            variant="outline-info"
+            variant="outline-primary"
+            className="custom-btn"
             onClick={() => {
               addCart(item);
             }}
@@ -36,10 +37,9 @@ function ProductCart({ item }) {
       </div>
       <Card.Body className="text-center">
         <Card.Title>{title}</Card.Title>
-        <Card.Subtitle>{category}</Card.Subtitle>
+        <Card.Subtitle className="text-muted">{category}</Card.Subtitle>
         <Card.Subtitle className="my-2">
-          <span>${price}</span>
-          <span className="text-overline"></span>
+          <span>${price.toFixed(2)}</span>
         </Card.Subtitle>
         <Card.Text>
           {[...Array(Math.floor(rating.rate))].map((_, i) => (
