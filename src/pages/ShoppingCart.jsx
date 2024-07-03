@@ -171,7 +171,7 @@ function ShoppingCart() {
 
                         <div className="d-flex justify-content-between">
                           <p className="mb-2">Total (Incl. taxes)</p>
-                          <p className="mb-2">${total}</p>
+                          <p className="mb-2">${total.toFixed(2)}</p>
                         </div>
 
                         <Button

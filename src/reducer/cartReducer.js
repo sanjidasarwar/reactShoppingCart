@@ -24,7 +24,7 @@ export const cartReducer = (state, action) => {
         ...state,
         cartList:payload.cartList,
         cartNumber:payload.cartNumber,
-        subtotal:payload.total,
+        subtotal:payload.subtotal,
         total:payload.subtotal- SHIPPING_COST
       };
     

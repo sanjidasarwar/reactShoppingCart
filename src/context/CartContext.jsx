@@ -20,16 +20,20 @@ export const CartProvider = ({ children }) => {
     );
   };
 
+  const calculateSubtotalValue = (cartList) => {
+    return cartList.reduce((total, item) => total + item.productTotal, 0);
+  };
+  
   const updateCartNumber = (cartList) => {
     const updatedCartNumber = calculateCartNumber(cartList);
-    const updateTotalValue =calculateSubtotalValue(cartList)
-
+    const updateSubtotalValue =calculateSubtotalValue(cartList)
+    
     dispatch({
       type: "UPDATE_QUANTITY",
       payload: {
         cartList: cartList,
         cartNumber: updatedCartNumber,
-        total:updateTotalValue
+        subtotal:updateSubtotalValue
       },
     });
   };
@@ -38,9 +42,6 @@ export const CartProvider = ({ children }) => {
     return  item.quantity * item.price;
   }
 
-  const calculateSubtotalValue = (cartList) => {
-    return cartList.reduce((total, item) => total + item.productTotal, 0);
-  };
 
   const updateCartList =(cartList, id, updateFun) =>{
       return cartList.map(cart =>(
@@ -69,8 +70,6 @@ export const CartProvider = ({ children }) => {
 
     const updateSubtotalValue =calculateSubtotalValue(updatedCartList)
 
-    console.log(updateSubtotalValue)
-    
     dispatch({
       type: "ADD_TO_CART",
       payload: {
@@ -94,7 +93,7 @@ export const CartProvider = ({ children }) => {
   };
 
   const handleInputChange = (e, id) => {
-    const inputValue = e.target.value === "" ? 0 : parseInt(e.target.value);
+    const inputValue = parseInt(e.target.value) || 0
     const updatedCartList = updateCartList(state.cartList, id, (item)=>({
       ...item,
       quantity: inputValue,
@@ -112,6 +111,7 @@ export const CartProvider = ({ children }) => {
   }) )
 
     updateCartNumber(updatedCartList);
+
   };
   const handleDecrement = (id) => {
     const updatedCartList = updateCartList(state.cartList, id, (item)=>({
@@ -123,7 +123,7 @@ export const CartProvider = ({ children }) => {
     updateCartNumber(updatedCartList);
   };
 
-  console.log(state.cartList);
+  
   const value = {
     cartList: state.cartList,
     cartNumber: state.cartNumber,
